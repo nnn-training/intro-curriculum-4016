@@ -1,7 +1,7 @@
 'use strict';
-let request = require('supertest');
-let app = require('../app');
-let passportStub = require('passport-stub');
+const request = require('supertest');
+const app = require('../app');
+const passportStub = require('passport-stub');
 
 describe('/login', () => {
   before(() => {
