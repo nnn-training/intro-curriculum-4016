@@ -1,4 +1,4 @@
-FROM node:14.15.4
+FROM --platform=linux/x86_64 node:14.15.4
 
 RUN apt-get update
 RUN apt-get install -y locales vim tmux
@@ -9,4 +9,3 @@ ENV TZ Asia/Tokyo
 WORKDIR /app
 COPY package.json .
 RUN yarn install
-COPY . ./
