@@ -28,4 +28,12 @@ describe('/login', () => {
       .expect(/testuser/)
       .expect(200);
   });
+
+  test('/logoutにアクセスした際に/にリダイレクトされる', () => {
+    return request(app)
+    .get('/logout')
+    //.get('logout')というtypoをしました
+    .expect('Location', '/')
+    .expect(302);
+  });
 });
