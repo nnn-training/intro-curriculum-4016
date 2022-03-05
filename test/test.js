@@ -29,3 +29,14 @@ describe('/login', () => {
       .expect(200);
   });
 });
+
+// /logoutにアクセスした時に、/にリダイレクトされるか確認するテスト。/logout用にdescribe関数を追加し、その中にテストを記述
+describe('/logout', () => {
+  test('/logoutにアクセスした際に、/にリダイレクトされる', () => {
+    return request(app)
+      .get('/logout')
+      .expect('Location', '/')
+      .expect(302);
+  });
+});
+
