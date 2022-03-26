@@ -19,8 +19,8 @@
     "pug": "3.0.2"
   },
   "devDependencies": {
-    "jest": "25.1.0",
+    "jest": "27.5.1",
     "passport-stub": "1.1.1",
-    "supertest": "3.1.0"
+    "supertest": "6.2.2"
   }
 }
