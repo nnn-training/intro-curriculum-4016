@@ -1,9 +1,20 @@
-FROM --platform=linux/x86_64 node:16.14.2-slim
-
-RUN apt-get update
-RUN apt-get install -y locales vim tmux
-RUN locale-gen ja_JP.UTF-8
-RUN localedef -f UTF-8 -i ja_JP ja_JP
-ENV LANG=ja_JP.UTF-8
-ENV TZ=Asia/Tokyo
-WORKDIR /app
+version: '3'
+services:
+  app:
+    build: .
+    tty: true
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+  db:
+    build: 
+      context: "."
+      dockerfile: "db.Dockerfile"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: schedule_arranger
