@@ -3,13 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var helmet = require('helmet');
-var session = require('express-session');
-var passport = require('passport');
+const helmet = require('helmet');
+const session = require('express-session');
+const passport = require('passport');
 
-var GitHubStrategy = require('passport-github2').Strategy;
-var GITHUB_CLIENT_ID = '2f831cb3d4aac02393aa';
-var GITHUB_CLIENT_SECRET = '9fbc340ac0175123695d2dedfbdf5a78df3b8067';
+const GitHubStrategy = require('passport-github2').Strategy;
+const GITHUB_CLIENT_ID = '2f831cb3d4aac02393aa';
+const GITHUB_CLIENT_SECRET = '9fbc340ac0175123695d2dedfbdf5a78df3b8067';
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -32,8 +32,8 @@ passport.use(new GitHubStrategy({
 ));
 
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var logoutRouter = require('./routes/logout');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 
 var app = express();
 app.use(helmet());
