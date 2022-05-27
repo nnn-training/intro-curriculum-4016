@@ -4,28 +4,38 @@ const app = require('../app');
 const passportStub = require('passport-stub');
 
 describe('/login', () => {
-  beforeAll(() => {
-    passportStub.install(app);
-    passportStub.login({ username: 'testuser' });
-  });
+    beforeAll(() => {
+        passportStub.install(app);
+        passportStub.login({ username: 'testuser' });
+    });
 
-  afterAll(() => {
-    passportStub.logout();
-    passportStub.uninstall(app);
-  });
+    afterAll(() => {
+        passportStub.logout();
+        passportStub.uninstall(app);
+    });
 
-  test('ログインのためのリンクが含まれる', async () => {
-    await request(app)
-      .get('/login')
-      .expect('Content-Type', 'text/html; charset=utf-8')
-      .expect(/<a href="\/auth\/github"/)
-      .expect(200);
-  });
+    test('ログインのためのリンクが含まれる', async() => {
+        await request(app)
+            .get('/login')
+            .expect('Content-Type', 'text/html; charset=utf-8')
+            .expect(/<a href="\/auth\/github"/)
+            .expect(200);
+    });
 
-  test('ログイン時はユーザー名が表示される', async () => {
-    await request(app)
-      .get('/login')
-      .expect(/testuser/)
-      .expect(200);
-  });
+    test('ログイン時はユーザー名が表示される', async() => {
+        await request(app)
+            .get('/login')
+            .expect(/testuser/)
+            .expect(200);
+    });
+
+});
+
+describe('/logout', () => {
+    test('ログアウトした際 / にリダイレクトされる', async() => {
+        await request(app)
+            .get('/logout')
+            .expect('Location', '/')
+            .expect(302);
+    });
 });
