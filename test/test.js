@@ -11,7 +11,7 @@ describe('/login', () => {
 
   afterAll(() => {
     passportStub.logout();
-    passportStub.uninstall(app);
+    passportStub.uninstall();
   });
 
   test('ログインのためのリンクが含まれる', async () => {
