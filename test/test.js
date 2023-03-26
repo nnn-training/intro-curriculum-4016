@@ -2,6 +2,7 @@
 const request = require('supertest');
 const app = require('../app');
 const passportStub = require('passport-stub');
+const { text } = require('express');
 
 describe('/login', () => {
   beforeAll(() => {
@@ -27,5 +28,14 @@ describe('/login', () => {
       .get('/login')
       .expect(/testuser/)
       .expect(200);
+  });
+});
+
+describe('/logout', () => {
+  test('/ にリダイレクトされる', async () => {
+    await request(app)
+      .get('/logout')
+      .expect('Location', '/')
+      .expect(302);
   });
 });
