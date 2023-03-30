@@ -28,4 +28,11 @@ describe('/login', () => {
       .expect(/testuser/)
       .expect(200);
   });
+
+  test('ログアウト時にメインページに飛ばされる', async () => {
+    await request(app)
+      .get('/logout')
+      .expect('Location', '/')    //メインページに飛んでるかテスト
+      .expect(302);               //ステータスコード302が返ってきてるかテスト
+  });
 });
