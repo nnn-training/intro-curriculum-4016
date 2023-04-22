@@ -1,8 +1,8 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const helmet = require('helmet');
 const session = require('express-session');
 const passport = require('passport');
@@ -31,11 +31,11 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 
-var app = express();
+const app = express();
 app.use(helmet());
 
 // view engine setup
