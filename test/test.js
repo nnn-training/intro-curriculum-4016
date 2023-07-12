@@ -29,3 +29,13 @@ describe('/login', () => {
       .expect(200);
   });
 });
+
+// describeの第2引数にasyncをつけてはいけない
+describe('/logout', () => {
+  test('/logout にアクセスした後 / にリダイレクトされる', async () => {
+    await request(app)
+      .get('/logout')
+      .expect('Location', '/')
+      .expect(302);
+  });
+});
