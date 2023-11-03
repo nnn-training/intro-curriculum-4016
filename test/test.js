@@ -3,16 +3,21 @@ const request = require('supertest');
 const app = require('../app');
 const passportStub = require('passport-stub');
 
-describe('/login', () => {
-  beforeAll(() => {
-       passportStub.install(app);
-       passportStub.login({ username: 'testuser' });
-   });
+// テスト開始前
+const setUp = () => {
+  passportStub.install(app);
+  passportStub.login({ id: 0, username: 'testuser' });
+};
 
-  afterAll(() => {
-    passportStub.logout();
-    passportStub.uninstall(app);
-  });
+// テスト終了後
+const tearDown = () => {
+  passportStub.logout();
+  passportStub.uninstall(app);
+};
+
+describe('/login', () => {
+  beforeAll(() => { setUp(); });
+  afterAll(() => { tearDown(); });
 
   test('ログインのためのリンクが含まれる', () => {
     return request(app)
@@ -27,5 +32,14 @@ describe('/login', () => {
       .get('/login')
       .expect(/testuser/)
       .expect(200);
+  });
+});
+
+describe('/logout', () => {
+  test('/ にリダイレクトされる', () => {
+    return request(app)
+      .get('/logout')
+      .expect('Location', '/')
+      .expect(302);
   });
 });
