@@ -29,3 +29,9 @@ describe('/login', () => {
       .expect(200);
   });
 });
+
+describe('/logout', () => {
+  test('ログアウト後/にリダイレクトされる', async () => {
+    await request(app).get('/logout').expect('Location', '/').expect(302);
+  });
+});
