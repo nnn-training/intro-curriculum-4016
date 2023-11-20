@@ -29,3 +29,12 @@ describe('/login', () => {
       .expect(200);
   });
 });
+
+describe('/logout', () => {
+  test('/へリダイレクトされる', async () => {
+    await request(app)
+    .get('/logout')
+    .expect('Location', '/')
+    .expect(302);
+  });
+});
