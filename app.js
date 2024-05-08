@@ -8,8 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 
 const GitHubStrategy = require('passport-github2').Strategy;
-const GITHUB_CLIENT_ID = '2f831cb3d4aac02393aa';
-const GITHUB_CLIENT_SECRET = '9fbc340ac0175123695d2dedfbdf5a78df3b8067';
+const GITHUB_CLIENT_ID = 'cbf21418657453b45185';
+const GITHUB_CLIENT_SECRET = '03e583a5c4e89e1ed4d571dd4accc754b340f690';
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -48,7 +48,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: 'e55be81b307c1c09', resave: false, saveUninitialized: false }));
+app.use(session({ secret: '13fcb1025fd23c4b', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
