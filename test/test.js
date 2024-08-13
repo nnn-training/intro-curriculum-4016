@@ -28,4 +28,13 @@ describe('/login', () => {
       .expect(/testuser/)
       .expect(200);
   });
+
+  describe('/logout', () => {
+    test('/ にリダイレクトされる', async () => {
+      await request(app)
+        .get('/logout')
+        .expect('Location', '/')
+        .expect(302);
+    });
+  });
 });
