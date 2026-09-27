@@ -29,3 +29,12 @@ describe('/login', () => {
     expect(res.status).toBe(200);
   });
 });
+
+describe('/logout', () => {
+  test('ログアウト時に / へリダイレクトされる', async () => {
+    const app = require('./app');
+    const res = await app.request('/logout');
+    expect(res.headers.get('Location')).toBe('/');
+    expect(res.status).toBe(302);
+  });
+});
